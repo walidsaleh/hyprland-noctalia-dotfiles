@@ -9,8 +9,8 @@ echo "=== $(date) ===" >> "$LOG"
 
 # 1. Run update
 /usr/bin/yay -Syu --noconfirm --answerclean All --answerdiff None --removemake >> "$LOG" 2>&1 || {
-    echo "yay falló, ver $LOG" | tee -a "$LOG"
-    notify-send -u critical "Updates" "yay falló. Revisa $LOG"
+    echo "yay failed, see $LOG" | tee -a "$LOG"
+    notify-send -u critical "Updates" "yay failed. Check $LOG"
     exit 1
 }
 
@@ -24,13 +24,13 @@ REASON=""
 # Kernel mismatch (installed != running)
 if [ -n "$INSTALLED_KERNEL" ] && [ "$RUNNING_KERNEL" != "$INSTALLED_KERNEL" ]; then
     NEEDS_REBOOT=1
-    REASON="kernel actualizado ($RUNNING_KERNEL → $INSTALLED_KERNEL)"
+    REASON="kernel updated ($RUNNING_KERNEL → $INSTALLED_KERNEL)"
 fi
 
 # Modules of running kernel gone (often the case after a kernel upgrade before reboot)
 if [ ! -d "/usr/lib/modules/$(uname -r)" ]; then
     NEEDS_REBOOT=1
-    REASON="${REASON:+$REASON; }módulos del kernel en uso ya no están en disco"
+    REASON="${REASON:+$REASON; }modules for the running kernel are no longer on disk"
 fi
 
 # 3. Write/clear flag
@@ -41,11 +41,11 @@ else
     rm -f "$FLAG"
 fi
 
-echo "Update completo (reboot: $([ "$NEEDS_REBOOT" = "1" ] && echo SÍ || echo no))" >> "$LOG"
+echo "Update complete (reboot: $([ "$NEEDS_REBOOT" = "1" ] && echo YES || echo no))" >> "$LOG"
 
-# 4. Notificar si hubo updates reales
+# 4. Notify if real updates happened
 if ! grep -q "no hay nada que hacer" "$LOG" 2>/dev/null; then
     UPDATED=$(grep -cE "^-> .{1,} \([^)]+\) ->" "$LOG" 2>/dev/null || echo "?")
-    notify-send -u normal "Updates OK" "$UPDATED paquetes"
+    notify-send -u normal "Updates OK" "$UPDATED packages"
     echo "$(date +%s) $UPDATED" > "$HOME/.cache/last-updates"
 fi

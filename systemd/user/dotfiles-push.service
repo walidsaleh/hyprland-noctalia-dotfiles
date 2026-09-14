@@ -3,4 +3,4 @@ Description=Auto-commit and push dotfiles if changed
 
 [Service]
 Type=oneshot
-ExecStart=%h/dotfiles/bin/dotfiles-push.sh
+ExecStart=%h/hyprland-noctalia-dotfiles/bin/dotfiles-push.sh
