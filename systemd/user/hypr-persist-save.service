@@ -1,0 +1,11 @@
+[Unit]
+Description=Save Hyprland session on shutdown
+Before=graphical-session.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStop=hypr-persist save last
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic auto-save of Hyprland session
+After=hyprland-session.target
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target

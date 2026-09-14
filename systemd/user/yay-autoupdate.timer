@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily system update via yay
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
