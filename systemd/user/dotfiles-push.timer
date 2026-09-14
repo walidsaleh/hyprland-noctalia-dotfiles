@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily dotfiles auto-push
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=60min
+
+[Install]
+WantedBy=timers.target
