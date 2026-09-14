@@ -2,8 +2,9 @@
 Description=Daily dotfiles auto-push
 
 [Timer]
-OnBootSec=2min
-OnUnitActiveSec=60min
+OnCalendar=*-*-* 23:00:00
+RandomizedDelaySec=30min
+Persistent=true
 
 [Install]
 WantedBy=timers.target
