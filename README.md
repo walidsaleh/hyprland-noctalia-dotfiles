@@ -1,6 +1,6 @@
-# dotfiles
+# hyprland-noctalia-dotfiles
 
-Backup versionado de la configuración del sistema (Hyprland + Noctalia + keyd + Qt + scripts).
+Backup versionado de la configuración de **Hyprland + Noctalia** en CachyOS, junto con keyd (remapeo de teclado), Qt6ct, scripts propios y unidades systemd de usuario.
 
 ## Estructura
 
@@ -19,11 +19,11 @@ Todo se gestiona con **symlinks**: los archivos viven aquí y se enlazan a `~/.c
 ## Restore en otra máquina
 
 ```bash
-git clone <url> ~/dotfiles
-cd ~/dotfiles
+git clone <url> ~/hyprland-noctalia-dotfiles
+cd ~/hyprland-noctalia-dotfiles
 # Recrear los symlinks manualmente o con un script
 ```
 
 ## Push automático
 
-Hay un timer systemd (`~/.config/systemd/user/dotfiles-push.timer`) que hace `git add + commit + push` una vez al día si hay cambios.
+Hay un timer systemd (`dotfiles-push.timer`) que hace `git add + commit + push` cada hora si hay cambios.
