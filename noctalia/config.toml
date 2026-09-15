@@ -90,7 +90,7 @@ gpu_poll_seconds = 2
 
 [theme]
 mode = "dark"
-source = "wallpaper"
+source = "builtin"
 wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
