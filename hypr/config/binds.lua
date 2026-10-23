@@ -82,8 +82,9 @@ hl.bind(mainMod .. " + Space",      hl.dsp.exec_cmd(noctCall .. "panel-toggle la
 hl.bind(mainMod .. " + period",     hl.dsp.exec_cmd(noctCall .. "panel-toggle launcher /emo"))
 hl.bind(mainMod .. " + L",          hl.dsp.exec_cmd(noctCall .. "session lock"))
 hl.bind(mainMod .. " + SHIFT + L",  hl.dsp.exec_cmd("hypr-persist save last && " .. noctCall .. "session logout"))
-hl.bind(mainMod .. " + SHIFT + R",  hl.dsp.exec_cmd("hypr-persist save last && " .. noctCall .. "session reboot"))
-hl.bind(mainMod .. " + SHIFT + S",  hl.dsp.exec_cmd("hypr-persist save last && " .. noctCall .. "session shutdown"))
+-- R/S abren el panel de sesión (con countdown + confirmación) en vez de reiniciar/apagar de golpe
+hl.bind(mainMod .. " + SHIFT + R",  hl.dsp.exec_cmd(noctCall .. "panel-toggle session"))
+hl.bind(mainMod .. " + SHIFT + S",  hl.dsp.exec_cmd(noctCall .. "panel-toggle session"))
 hl.bind(mainMod .. " + ALT + C",    hl.dsp.exec_cmd(noctCall .. "panel-toggle session"))
 
 ---------------------------

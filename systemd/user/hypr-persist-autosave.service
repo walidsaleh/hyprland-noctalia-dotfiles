@@ -1,6 +1,0 @@
-[Unit]
-Description=Auto-save Hyprland session snapshot
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/hypr-persist save last
