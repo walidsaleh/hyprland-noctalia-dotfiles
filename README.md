@@ -77,22 +77,19 @@ done
 sudo systemctl enable --now keyd
 sudo keyd reload
 
-# Auto-update and auto-push timers
+# Auto-push timer
 systemctl --user daemon-reload
-systemctl --user enable --now yay-autoupdate.timer
-systemctl --user enable --now hypr-persist-save.service
-systemctl --user enable --now hypr-persist-autosave.timer
 systemctl --user enable --now dotfiles-push.timer
 ```
 
-### 4. Passwordless sudo for auto-update
+### 4. Passwordless sudo for manual pacman
 
 ```bash
-sudo tee /etc/sudoers.d/yay-autoupdate > /dev/null << 'EOF'
+sudo tee /etc/sudoers.d/pacman-nopasswd > /dev/null << 'EOF'
 walid ALL=(root) NOPASSWD: /usr/bin/pacman
 EOF
-sudo chmod 440 /etc/sudoers.d/yay-autoupdate
-sudo visudo -c -f /etc/sudoers.d/yay-autoupdate
+sudo chmod 440 /etc/sudoers.d/pacman-nopasswd
+sudo visudo -c -f /etc/sudoers.d/pacman-nopasswd
 ```
 
 > Rename `walid` to your actual username.
@@ -118,9 +115,8 @@ F-row ↔ multimedia swap via keyd, plus XKB modifier remap to coexist with the 
 
 ### Session
 
-- Window persistence with `hypr-persist`
-- Auto-save every 5 min + save on shutdown via systemd ExecStop
-- Auto-restore on Hyprland start
+- Clean session start: no window persistence, apps are not restored automatically.
+- Session actions via the Noctalia panel (`SUPER + ALT + C`), which applies a 3 s countdown before reboot/shutdown.
 
 ### Power button
 
